@@ -1,6 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;600;700&family=Lato:wght@300;400;700&family=Roboto:wght@100&family=Smooch+Sans:wght@300;500;700;900&display=swap");
+
 //imports
-@import'./reset';
-@import'./variables';
-@import'./maps';
+@import "./reset";
+@import "./variables";
+@import "./maps";
 
+//functions and mixings
+@function fSizes($size) {
+  @return map-get($font-size, $size);
+}
+@function fFamily($type) {
+  @return map-get($font-family, $type);
+}
+@function fWeights($weight) {
+  @return map-get($font-weights, $weight);
+}
 
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//adding gradient to body
+//https://uigradients.com
+
+body {
+  width: 100%;
+  height: 100hv;
+  font-family: fFamily(lato);
+  background: #d1913c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffd194,
+    #d1913c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #d1913c,
+    #ffd194
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+h1 {
+  font-family: fFamily(smooch);
+  font-size: fSizes(xx-large);
+}
+.main {
+  width: 80%;
+  margin: 10% auto;
+  padding: 2em;
+  & .container {
+    //responsive table
+    overflow-x: auto;
+  }
+
+  form {
+    width: 100%;
+  }
+  label {
+    @include flexCenter();
+    & div {
+      width: 20%;
+      @include flexCenter();
+      padding: 0.5em;
+      background-color: $blue;
+      min-height: 60px;
+      font-size: fSizes(medium);
+      border-top-right-radius: 0.3rem;
+      border-bottom-right-radius: 0.3rem;
+      transition: all 0.4s ease-in-out;
+      &:hover {
+        background-color: $dark-blue;
+      }
+      & .fa-solid {
+        transition: all 0.4s ease-in-out;
+        &:hover {
+          transform: translateX(10px);
+        }
+      }
+    }
+    input {
+      display: block;
+      width: 80%;
+      background-color: #bee5e3;
+      padding: 0.5em;
+      min-height: 60px;
+      font-size: fSizes(medium);
+      border-top-left-radius: 0.3rem;
+      border-bottom-left-radius: 0.3rem;
+      transition: all 0.15s ease-in-out;
+      &::placeholder {
+        color: $dark;
+      }
+      &:focus {
+        border: 5px solid transparent;
+        border-radius: 0.3rem;
+        background-color: white;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+      }
+    }
+  }
+  & .alert {
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    margin: 1em auto;
+    padding: 1em;
+    border-radius: 0.3rem;
+    background-color: $pink;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: all 0.3s linear;
+    & .fa-recangle-xmark{
+        font-size: fSizes(large);
+        &:hover{
+            color:$dark;
+            
+        }
+    }
+
+  }
+}
+table{
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-radius: 0.3rem;
+    margin: 2em auto;
+    & tr{
+        background-color: #f6f6f6;
+    }
+    & tr:nth-of-type(odd){
+        background-color: #e9e9e9;
+    }
+    & th{
+        background-color: #2980b9;
+        padding: 0.5em;
+        font-weight: fWeights(bold);
+        font-size: fSizes(large);
+        text-transform: capitalize;
+    }
+}

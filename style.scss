@@ -50,6 +50,7 @@ h1 {
   width: 80%;
   margin: 10% auto;
   padding: 2em;
+  background-color: white;
   & .container {
     //responsive table
     overflow-x: auto;
@@ -113,33 +114,88 @@ h1 {
     justify-content: space-between;
     align-items: flex-start;
     transition: all 0.3s linear;
-    & .fa-recangle-xmark{
-        font-size: fSizes(large);
-        &:hover{
-            color:$dark;
-            
-        }
+    & .fa-recangle-xmark {
+      font-size: fSizes(large);
+      &:hover {
+        color: $dark;
+      }
     }
-
   }
 }
-table{
-    width: 100%;
-    border-spacing: 0;
-    border-collapse: collapse;
-    border-radius: 0.3rem;
-    margin: 2em auto;
-    & tr{
-        background-color: #f6f6f6;
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-radius: 0.3rem;
+  margin: 2em auto;
+  & tr {
+    background-color: #f6f6f6;
+  }
+  & tr:nth-of-type(odd) {
+    background-color: #e9e9e9;
+  }
+  & th {
+    background-color: #2980b9;
+    padding: 0.5em;
+    font-weight: fWeights(bold);
+    font-size: fSizes(large);
+    text-transform: capitalize;
+  }
+  & th:first-child {
+    border-top-left-radius: 0.3rem;
+  }
+  & th:last-child {
+    border-top-right-radius: 0.3rem;
+  }
+  & td {
+    font-family: fFamily(fredoka);
+    padding: 0.8em;
+  }
+  &td:first-child {
+    width: 70%;
+    font-size: fSizes(large);
+  }
+  & td:nth-child(2),
+  & td:nth-child(3) {
+    width: 15%;
+    font-size: fSizes(medium);
+  }
+  & .fa-2x {
+    font-size: 1.3em;
+    color: $yellow;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: $light-yellow;
+      transform: scale(1.2);
     }
-    & tr:nth-of-type(odd){
-        background-color: #e9e9e9;
+  }
+  & td:nth-child(3) .fa-2x {
+    color: $red;
+  }
+  & td:nth-child(3) .fa-2x:hover {
+    color: $dark-red;
+  }
+  & .fa-circle-check {
+    color: $green;
+    margin-right: 15px;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      color: $teal;
+      transform: scale(1.2);
     }
-    & th{
-        background-color: #2980b9;
-        padding: 0.5em;
-        font-weight: fWeights(bold);
-        font-size: fSizes(large);
-        text-transform: capitalize;
-    }
+  }
 }
+.dismissible {
+  opacity: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  transition: all .3s linear;
+}
+.editable{
+    background-color: white;
+    display: inline-block;
+    padding: .3em;
+    border-radius: .3rem;
+    margin-top: .3em;
+}
+

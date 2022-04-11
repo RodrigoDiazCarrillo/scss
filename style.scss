@@ -1,17 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500;600;700&family=Lato:wght@300;400;700&family=Roboto:wght@100&family=Smooch+Sans:wght@300;500;700;900&display=swap");
-
-//imports
-@import "./reset";
-@import "./variables";
-@import "./maps";
+//Import others SASS files
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;700&family=Lato:wght@100;300;400;700&family=Open+Sans&family=Roboto&family=Smooch+Sans:wght@100;300;400;700&display=swap");
+@import "./_reset.scss";
+@import "./_variables.scss";
+@import "./_maps.scss";
 
 //functions and mixings
 @function fSizes($size) {
-  @return map-get($font-size, $size);
+  @return map-get($font-sizes, $size);
 }
-@function fFamily($type) {
-  @return map-get($font-family, $type);
+
+@function fFamily($family) {
+  @return map-get($font-family, $family);
 }
+
 @function fWeights($weight) {
   @return map-get($font-weights, $weight);
 }
@@ -26,31 +27,32 @@
 //https://uigradients.com
 
 body {
-  width: 100%;
-  height: 100hv;
   font-family: fFamily(lato);
-  background: #d1913c; /* fallback for old browsers */
+  background: #c21500; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #ffd194,
-    #d1913c
+    to left,
+    #00416a,
+    #e4e5e6
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #d1913c,
-    #ffd194
+    to left,
+    #00416a,
+    #e4e5e6
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100%;
+  height: 100vh;
 }
 
 h1 {
   font-family: fFamily(smooch);
   font-size: fSizes(xx-large);
 }
+
 .main {
   width: 80%;
   margin: 10% auto;
   padding: 2em;
-  background-color: white;
+  background-color: #fff;
   & .container {
     //responsive table
     overflow-x: auto;
@@ -59,6 +61,7 @@ h1 {
   form {
     width: 100%;
   }
+
   label {
     @include flexCenter();
     & div {
@@ -68,9 +71,9 @@ h1 {
       background-color: $blue;
       min-height: 60px;
       font-size: fSizes(medium);
-      border-top-right-radius: 0.3rem;
-      border-bottom-right-radius: 0.3rem;
+      border-radius: 0 0.3rem 0.3rem 0;
       transition: all 0.4s ease-in-out;
+      cursor: pointer;
       &:hover {
         background-color: $dark-blue;
       }
@@ -88,8 +91,7 @@ h1 {
       padding: 0.5em;
       min-height: 60px;
       font-size: fSizes(medium);
-      border-top-left-radius: 0.3rem;
-      border-bottom-left-radius: 0.3rem;
+      border-radius: 0.3rem 0 0 0.3rem;
       transition: all 0.15s ease-in-out;
       &::placeholder {
         color: $dark;
@@ -97,7 +99,7 @@ h1 {
       &:focus {
         border: 5px solid transparent;
         border-radius: 0.3rem;
-        background-color: white;
+        background-color: #fff;
         box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
       }
     }
@@ -113,89 +115,90 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    transition: all 0.3s linear;
-    & .fa-recangle-xmark {
+    transition: all .3s linear;
+    & .fa-rectangle-xmark {
       font-size: fSizes(large);
-      &:hover {
+      &:hover{
         color: $dark;
       }
     }
   }
 }
-table {
+table{
   width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
   border-radius: 0.3rem;
   margin: 2em auto;
-  & tr {
+  & tr{
     background-color: #f6f6f6;
   }
-  & tr:nth-of-type(odd) {
+  & tr:nth-of-type(odd){
     background-color: #e9e9e9;
   }
-  & th {
+  & th{
     background-color: #2980b9;
-    padding: 0.5em;
+    padding: .5em;
     font-weight: fWeights(bold);
     font-size: fSizes(large);
     text-transform: capitalize;
   }
-  & th:first-child {
-    border-top-left-radius: 0.3rem;
+  & th:first-child{
+    border-radius: .3rem 0 0 0 ;
   }
-  & th:last-child {
-    border-top-right-radius: 0.3rem;
+  & th:last-child{
+    border-radius: 0 .3rem 0 0 ;
   }
-  & td {
+  & td{
     font-family: fFamily(fredoka);
-    padding: 0.8em;
+    padding: .8em;
   }
-  &td:first-child {
+  & td:first-child{
     width: 70%;
     font-size: fSizes(large);
   }
-  & td:nth-child(2),
-  & td:nth-child(3) {
+  & td:nth-child(2), & td:nth-child(3){
     width: 15%;
     font-size: fSizes(medium);
   }
-  & .fa-2x {
+  & .fa-2x{
     font-size: 1.3em;
     color: $yellow;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      color: $light-yellow;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    &:hover{
       transform: scale(1.2);
+      color: $light-yellow;
     }
   }
-  & td:nth-child(3) .fa-2x {
+  & td:nth-child(3) .fa-2x{
     color: $red;
   }
-  & td:nth-child(3) .fa-2x:hover {
+  & td:nth-child(3) .fa-2x:hover{
     color: $dark-red;
   }
-  & .fa-circle-check {
+  & .fa-circle-check{
     color: $green;
-    margin-right: 15px;
-    transition: all 0.3s ease-in-out;
-    &:hover {
+    margin: 0 15px 0 0;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    &:hover{
       color: $teal;
       transform: scale(1.2);
     }
   }
 }
-.dismissible {
+.dismissible{
   opacity: 0 !important;
   height: 0 !important;
   padding: 0 !important;
   transition: all .3s linear;
 }
-.editable{
-    background-color: white;
-    display: inline-block;
-    padding: .3em;
-    border-radius: .3rem;
-    margin-top: .3em;
-}
 
+.editable{
+  background-color: #fff;
+  display: inline-block;
+  padding: .3em;
+  border-radius: .3rem;
+  margin: .3em 0 0 0;
+}
